@@ -8,8 +8,6 @@ def encoding():
     '''
     Example of an encoder network by using the pixel matrix from a number of the MNIST dataset
     '''
-    # plt.matshow(image, cmap='gray', clim=(0,1))
-    # plt.show()
 
     # define the network and the input
     ex = Network(sizes=[784, 200, 784], alpha=0.1, iterations=5, batch_size=0)
@@ -61,21 +59,6 @@ def use_vae():
     ax[2].title.set_text('Second image')
     fig.suptitle('Generation process of two images with the VAE')
     plt.show()
-
-
-#ex = Network(sizes=[2,2,1], alpha=1, iterations=1, batch_size=0)
-#ex.print()
-#a = np.array([[0.35, 0.7]]).T
-#b = ex.predict(a)
-#print(b, 'prediction')
-#ex.train(a,0.5)
-#print(ex.predict(a), 'after training')
-
-#vae = VAE(sizes=[[5, 3], [3, 5]], latent_dim=2, alpha=0.1, iterations=1, batch_size=0)
-#out = vae.encode_decode(np.array([[0.2, 0.3, 0.4, 0.5, 0.6]]).T)
-#print(out, 'out')
-#vae.learn(np.array([[0.2, 0.3, 0.4, 0.5, 0.6]]).T)
-
 
 if __name__ == "__main__":
     encoding()
