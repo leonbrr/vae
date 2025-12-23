@@ -60,6 +60,11 @@ def use_vae():
     fig.suptitle('Generation process of two images with the VAE')
     plt.show()
 
+    gen = vae.generate()
+    gen = gen.reshape((28, 28))
+    plt.matshow(gen, cmap='gray', clim=(0,1))
+    plt.show()
+
 if __name__ == "__main__":
     encoding()
     use_vae()

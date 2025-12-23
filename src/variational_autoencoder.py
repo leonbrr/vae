@@ -117,14 +117,17 @@ class VAE:
                 self.decoder.weights[k] -= self.alpha * grad_decoder_weights[k]
                 self.decoder.biases[k] -= self.alpha * grad_decoder_biases[k].T
 
-    def generate(self, z = None):
+    def generate(self, epsilon = None):
         '''
         Generates a new output
 
+        :param epsilon: Error term
         '''
-        if not np.any(z):
-            z = np.random.normal(0, 1, size=(1, self.latent_dim))
-        return self.decoder.predict(z)
+        if not np.any(epsilon):
+            epsilon = np.random.normal(0, 1, size=(1, self.latent_dim))
+
+        z_sample = self.mu[:,None] + np.sqrt(self.sigma)[:,None] * epsilon
+        return self.decoder.predict(z_sample.T)
 
     def encode_decode(self, X):
         '''
